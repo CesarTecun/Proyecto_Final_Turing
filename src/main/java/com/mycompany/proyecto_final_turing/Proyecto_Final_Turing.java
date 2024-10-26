@@ -20,7 +20,21 @@ public class Proyecto_Final_Turing {
     private Map<String, Transition> transitions; // Transiciones
 
  
-    
+    Transicion(String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
+            this.EstadoSiguiente = Estadosiguiente;
+            this.SimboloEscrito = Simboloescrito;
+            this.Direccion_Movimiento = Direccion_movimiento;
+        }
+    }
+
+    public Proyecto_Final_Turing(String Estadoinicial, String Estadoaceptado) {
+        this.Cinta = new String[100];
+        this.Cabezal = 50;  // posición inicial del cabezal
+        this.EstadoInicial = Estadoinicial;
+        this.EstadoActual = Estadoinicial;
+        this.EstadoAceptado = Estadoaceptado;
+        this.Transicion = new HashMap<>();
+    }
     
     
     
