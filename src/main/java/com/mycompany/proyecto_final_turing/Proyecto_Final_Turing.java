@@ -12,12 +12,18 @@ import java.util.Map;
 
 public class Proyecto_Final_Turing {
 
-     private String[] Cinta;           // Cinta
-    private int Cabezal;                // Cabezal de lectura/escritura
-    private String Estadoactual;     // Estado actual
-    private String Estado_aceptacion;     // Estado inicial
-    private String acceptState;      // Estado de aceptación
-    private Map<String, Transition> transitions; // Transiciones
+     private String[] Cinta;  // cinta
+    private int Cabezal;
+    private String EstadoActual;
+    private String EstadoInicial;
+    private String EstadoAceptado;
+    private Map<String, Transicion> Transicion;
+
+    class Transicion {
+
+        String EstadoSiguiente;
+        char SimboloEscrito;
+        int Direccion_Movimiento;/ Transiciones
 
  
     Transicion(String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
