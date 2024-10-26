@@ -105,7 +105,72 @@ public class Proyecto_Final_Turing {
     }
 
     
+    public class Turning {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Scanner scanner = new Scanner(System.in);
+
+        // Crear la máquina de Turing
+        System.out.print("Introduce el estado inicial: ");
+        String startState = scanner.nextLine();
+        System.out.print("Introduce el estado de aceptación: ");
+        String acceptState = scanner.nextLine();
+
+        Proyecto_Final_Turing tm = new Proyecto_Final_Turing(startState, acceptState);
+
+        // Pedir al usuario las transiciones con encabezados
+        System.out.println("\n--- Definir transiciones ---");
+        System.out.println("Introduce los datos para cada transición:");
+        System.out.println("Escribe 'fin' como estado actual cuando termines de agregar transiciones.");
+
+        while (true) {
+            System.out.println("\n-- Nueva Transición --");
+            System.out.print("Estado actual: ");
+            String currentState = scanner.nextLine();
+            if (currentState.equalsIgnoreCase("fin")) {
+                break;
+            }
+            System.out.print("Símbolo leído: ");
+            char readSymbol = scanner.nextLine().charAt(0);
+            System.out.print("Nuevo estado: ");
+            String nextState = scanner.nextLine();
+            System.out.print("Símbolo a escribir: ");
+            char writeSymbol = scanner.nextLine().charAt(0);
+            System.out.print("Movimiento (1 para derecha, -1 para izquierda): ");
+            int moveDirection = Integer.parseInt(scanner.nextLine());
+
+            // Agregar la transición
+            tm.addTransition(currentState, readSymbol, nextState, writeSymbol, moveDirection);
+        }
+
+        String opcion;
+        do {
+            // Pedir la cinta de entrada al usuario
+            System.out.print("\nIntroduce la cadena a validar (usa '_' para espacios vacíos): ");
+            String input = scanner.nextLine();
+
+            // Definir la cinta de entrada
+            tm.setInput(input);
+
+            // Ejecutar la máquina
+            boolean result = tm.run();
+
+            // Mostrar el resultado
+            if (result) {
+                System.out.println("Cadena aceptada.");
+            } else {
+                System.out.println("Cadena rechazada.");
+            }
+
+            // Mostrar la cinta final
+            tm.printTape();
+
+            // Preguntar si desea validar otra cadena
+            System.out.print("¿Quieres validar otra cadena? (s/n): ");
+            opcion = scanner.nextLine();
+        } while (opcion.equalsIgnoreCase("s"));
+
+        System.out.println("Programa terminado.");
+        scanner.close();
     }
+}
 }
