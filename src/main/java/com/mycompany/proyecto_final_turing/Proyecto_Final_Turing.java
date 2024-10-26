@@ -83,6 +83,28 @@ public class Proyecto_Final_Turing {
         return Estadoactual.equals(acceptState); // Solo aceptamos si llegamos al estado de aceptación
     }
     
+    //Version Jesda 
+    // Mostrar el contenido de la cinta con la posición del cabezal
+    public void printTape() {
+        for (int i = 0; i < Cinta.length; i++) {
+            // Mostrar el símbolo actual o '_' para espacios vacíos
+            System.out.print(Cinta[i] != null ? Cinta[i] : "_");
+        }
+        System.out.println();
+
+        // Mostrar la posición del cabezal
+        for (int i = 0; i < Cinta.length; i++) {
+            // Mostrar un marcador '^' en la posición del cabezal
+            if (i == Cabezal) {
+                System.out.print("^");
+            } else {
+                System.out.print(" ");
+            }
+        }
+        System.out.println();
+    }
+
+    
     public static void main(String[] args) {
         System.out.println("Hello World!");
     }
