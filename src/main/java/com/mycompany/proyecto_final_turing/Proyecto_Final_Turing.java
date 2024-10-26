@@ -1,18 +1,12 @@
-
 package com.mycompany.proyecto_final_turing;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author cesar
- */
-
 public class Proyecto_Final_Turing {
 
-     private String[] Cinta;  // cinta
+    private String[] Cinta;  // cinta
     private int Cabezal;
     private String EstadoActual;
     private String EstadoInicial;
@@ -23,10 +17,9 @@ public class Proyecto_Final_Turing {
 
         String EstadoSiguiente;
         char SimboloEscrito;
-        int Direccion_Movimiento;/ Transiciones
+        int Direccion_Movimiento;
 
- 
-    Transicion(String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
+        Transicion(String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
             this.EstadoSiguiente = Estadosiguiente;
             this.SimboloEscrito = Simboloescrito;
             this.Direccion_Movimiento = Direccion_movimiento;
@@ -41,9 +34,7 @@ public class Proyecto_Final_Turing {
         this.EstadoAceptado = Estadoaceptado;
         this.Transicion = new HashMap<>();
     }
-    
-    
-    
+
     public void AñadirTransicion(String Estado, char Simbolo_leido, String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
         String llave = Estado + "," + Simbolo_leido;
         Transicion.put(llave, new Transicion(Estadosiguiente, Simboloescrito, Direccion_movimiento));
@@ -57,8 +48,7 @@ public class Proyecto_Final_Turing {
         }
         this.EstadoActual = this.EstadoInicial; // reinicia el estado actual
     }
-    
-    
+
     public boolean run(StringBuilder registroPasos, List<String> estadosList) {
         while (!EstadoActual.equals(EstadoAceptado)) {
             char Simbolo_leido = Cinta[Cabezal] != null ? Cinta[Cabezal].charAt(0) : '_';
