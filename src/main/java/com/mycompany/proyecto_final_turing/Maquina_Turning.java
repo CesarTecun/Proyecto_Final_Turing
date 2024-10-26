@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Proyecto_Final_Turing {
-
+public class Maquina_Turning {
+//Cesar
     private String[] Cinta;  // cinta
     private int Cabezal;
     private String EstadoActual;
@@ -18,7 +18,7 @@ public class Proyecto_Final_Turing {
         String EstadoSiguiente;
         char SimboloEscrito;
         int Direccion_Movimiento;
-
+//Cesar
         Transicion(String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
             this.EstadoSiguiente = Estadosiguiente;
             this.SimboloEscrito = Simboloescrito;
@@ -26,7 +26,7 @@ public class Proyecto_Final_Turing {
         }
     }
 
-    public Proyecto_Final_Turing(String Estadoinicial, String Estadoaceptado) {
+    public Maquina_Turning(String Estadoinicial, String Estadoaceptado) {
         this.Cinta = new String[100];
         this.Cabezal = 50;  // posición inicial del cabezal
         this.EstadoInicial = Estadoinicial;
@@ -35,12 +35,12 @@ public class Proyecto_Final_Turing {
         this.Transicion = new HashMap<>();
     }
 
-    public void AñadirTransicion(String Estado, char Simbolo_leido, String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
+    public void addTransition(String Estado, char Simbolo_leido, String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
         String llave = Estado + "," + Simbolo_leido;
         Transicion.put(llave, new Transicion(Estadosiguiente, Simboloescrito, Direccion_movimiento));
     }
 
-    public void PonerenCinta(String input) {
+    public void setInput(String input) {
         this.Cinta = new String[100]; // reinicia la cinta
         this.Cabezal = 50; // reinicia la posición del cabezal
         for (int i = 0; i < input.length(); i++) {
