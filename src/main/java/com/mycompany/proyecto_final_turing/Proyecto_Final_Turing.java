@@ -47,7 +47,41 @@ public class Proyecto_Final_Turing {
         transitions.put(key, new Transition(nextState, writeSymbol, moveDirection));
     }
 
-    
+    // Método para configurar la cinta inicial
+    public void setInput(String input) {
+        // Limpiar la cinta antes de introducir una nueva cadena
+        this.Cinta = new String[100];
+        this.Cabezal = 50;
+        for (int i = 0; i < input.length(); i++) {
+            // Reemplazar el símbolo de espacio vacío con el carácter correspondiente
+            Cinta[Cabezal + i] = String.valueOf(input.charAt(i));
+        }
+        // Reiniciar el estado actual al inicial
+        this.Estadoactual = this.Estado_aceptacion;
+    }
+
+    // Método para ejecutar la máquina de Turing
+    public boolean run() {
+        while (!Estadoactual.equals(acceptState)) {
+            char readSymbol = Cinta[Cabezal] != null ? Cinta[Cabezal].charAt(0) : '_'; // Leer símbolo, _ como vacío
+            String key = Estadoactual + "," + readSymbol;
+
+            if (!transitions.containsKey(key)) {
+                // Si no hay transiciones válidas, la cadena es rechazada
+                return false;
+            }
+
+            Transition transition = transitions.get(key);
+            // Escribir símbolo en la cinta
+            Cinta[Cabezal] = String.valueOf(transition.escribirSimbolo);
+            // Mover el cabezal
+            Cabezal += transition.moverDireccion;
+            // Cambiar de estado
+            Estadoactual = transition.Siguientestado;
+        }
+
+        return Estadoactual.equals(acceptState); // Solo aceptamos si llegamos al estado de aceptación
+    }
     
     public static void main(String[] args) {
         System.out.println("Hello World!");
