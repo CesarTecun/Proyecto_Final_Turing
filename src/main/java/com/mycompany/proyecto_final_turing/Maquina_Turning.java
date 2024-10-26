@@ -15,16 +15,21 @@ public class Maquina_Turning {
 
     class Transicion {
 
-        String EstadoSiguiente;
-        char SimboloEscrito;
-        int Direccion_Movimiento;
+        String EstadoSiguiente; //Definir los primeros estados
+        char SimboloEscrito;    //Posiciona el simbolo escrito
+        int Direccion_Movimiento; //indica si va er 1 =Derecha o -1 Izquierda
 //Cesar
+        
+        //Determina las transiciones para realizar en la maquina
         Transicion(String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
             this.EstadoSiguiente = Estadosiguiente;
             this.SimboloEscrito = Simboloescrito;
             this.Direccion_Movimiento = Direccion_movimiento;
         }
     }
+    
+    //Utilizamos las partes en formato de constructor para ser utilizada en mis otros metos
+    //Incluso en la interfaz
 
     public Maquina_Turning(String Estadoinicial, String Estadoaceptado) {
         this.Cinta = new String[100];
@@ -32,14 +37,18 @@ public class Maquina_Turning {
         this.EstadoInicial = Estadoinicial;
         this.EstadoActual = Estadoinicial;
         this.EstadoAceptado = Estadoaceptado;
-        this.Transicion = new HashMap<>();
+        this.Transicion = new HashMap<>(); //Hasea cada transicion en un mapa
     }
 
+    
+    //Añadimos la transicion dependiendo lo que realice
     public void addTransition(String Estado, char Simbolo_leido, String Estadosiguiente, char Simboloescrito, int Direccion_movimiento) {
         String llave = Estado + "," + Simbolo_leido;
         Transicion.put(llave, new Transicion(Estadosiguiente, Simboloescrito, Direccion_movimiento));
     }
 
+    
+    //Ponerlo en la Cinta para realizar un proceso
     public void setInput(String input) {
         this.Cinta = new String[100]; // reinicia la cinta
         this.Cabezal = 50; // reinicia la posición del cabezal
@@ -49,6 +58,9 @@ public class Maquina_Turning {
         this.EstadoActual = this.EstadoInicial; // reinicia el estado actual
     }
 
+    
+    //Metodo Run  realiza un recorrido en la cinta para poder mostrarse en mi JtextField
+    //ademas simula una cinta con _ para ser rellenada para cada proceso realizado
     public boolean run(StringBuilder registroPasos, List<String> estadosList) {
         while (!EstadoActual.equals(EstadoAceptado)) {
             char Simbolo_leido = Cinta[Cabezal] != null ? Cinta[Cabezal].charAt(0) : '_';
@@ -109,6 +121,8 @@ public class Maquina_Turning {
         }
 
         return EstadoActual.equals(EstadoAceptado);
+    //Devolvemos El estado actual solo si es igual al estadoAceptado
+        //Es decir el estado final
     }
 
 }
